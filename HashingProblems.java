@@ -1,5 +1,5 @@
 /*
- * *** YOUR NAME GOES HERE / YOUR SECTION NUMBER ***
+ * *** NAME: Fareen Samad / SECTION: COMP 272-001 *** *
  *
  * This HashingProblems object contains three methods / problems that you must
  * complete utilize the HashMap object within the Java's Collection Framework Library.
@@ -33,16 +33,24 @@ class HashingProblems {
 
     public double getAverage(HashMap<Integer, Integer> map, int[] array) {
 
-        /*
-         * ADD YOUR CODE HERE - DO NOT FORGET TO ADD YOU NAME AT TOP OF FILE
-         *
-         * Note: if NO values found in common between the HashMap and supplied array,
-         * returning 0.0 is NOT correct, as that is not the average value. Whereas
-         * returning 0.0/0.0 IS correct (which would return a non-number).
-         */
+       double total = 0.0; // start at 0
+       int count = 0; // start at 0
 
-         return 0.0 / 0.0;
-  }
+         for (int i = 0; i < array.length; i++) { // for loop for each element in the array
+
+            if (map.containsKey(array[i])) { // if the key is in the map
+                total += map.get(array[i]); // add the value to the total
+                count++; // increment count
+            }
+         }
+
+         if (count > 0) { // if count is greater than 0
+            return total / count; // return average
+         }
+
+         return 0.0 / 0.0; // return if not found 
+
+  } // end method getAverage
 
 
     /*
@@ -54,17 +62,22 @@ class HashingProblems {
 
   public ArrayList<String> odd(HashMap<Integer, String> map) {
     
-      ArrayList<String> result = new ArrayList<>();
+      ArrayList<String> result = new ArrayList<>(); // array list created
 
-      /*
-       * ADD YOUR CODE HERE
-       *
-       * Hint: Consider iterating over the HashMap using the keySet method.
-       */
+      if (map != null) { // if map is not null
+        Set<Integer> keys = map.keySet(); // get keys from map
 
+        for (Integer key : keys) { // for each key in keys
 
-      return result;
-  }
+            if (key % 2 != 0) { // if key is odd
+                result.add(map.get(key)); // add the value to the array list
+            }
+        }
+      }
+
+      return result; // return the array list 
+
+  } // end method odd
 
 
   /*
@@ -92,7 +105,7 @@ class HashingProblems {
    *
    * In order to solve this problem in O(n) complexity, utilize a HashMap (or a HashSet).
    *
-   * You are two solve this using a HashMap (or you can use a HashSet, which is implemented
+   * You are to solve this using a HashMap (or you can use a HashSet, which is implemented
    * using HashMap). To solve this, you should populate the HashMap (or HashSet) based on
    * the array (this will be complexity time on the order of 'n'). After populating the HashMap,
    * consider a for-loop that does a lookup (probe) of the HashMap (or HashSet) on each iteration
@@ -106,11 +119,21 @@ class HashingProblems {
 
   public int twoSums(int[] numbers, int k) {
 
-      /*
-       * ADD YOUR CODE HERE
-       */
+      HashMap<Integer, Integer> map = new HashMap<>(); // create a new hash map
+       
+        int count = 0; // start at 0
 
-      return -1;
-  }
+        for (int i = 0; i < numbers.length; i++) { // loop for each element in the array
+
+            if (map.containsKey(numbers[i] - k)) { // if the key is in the map
+                count++; // increment count
+            }
+
+            map.put(numbers[i], i); // put the number in the map
+        }
+
+        return count; // return the count
+
+  } // end method twoSums
 
 } /* end class HashingProblems */
